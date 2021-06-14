@@ -9,6 +9,8 @@
 </head>
  
 <body>
+  <div class="div1">
+    <p id="-3"></p>  
     <p id="-2"></p>
     <p id="-1"></p>
     <p id="0"></p>
@@ -45,16 +47,15 @@
     <p id="31"></p>
 
     <script type="text/javascript">
+        var Year = 2021;
+        var Month = 5;
+
         function Calendar() {
             for (let i = 0; i < 31; i++) {
                 document.getElementById(i.toString()).innerHTML = "";
             }
-            var Year = document.getElementById("id1").value;
-            var Month = document.getElementById("id2").value - 1;
             var Day = 1;
             var d = new Date(Year, Month, Day);
-            var WeekDay = ["Sunday", "Monday", "Tuesday", "Wednesday",
-                "Thursday", "Friday", "Saturday"];
             var MonthsName = ["January", "Febrary", "March", "April",
                 "May", "June", "July", "August", "September", "October", "November", "December"];    
             var Months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -84,12 +85,142 @@
                 }
             }
         }
-    </script>
+
+        function Next() {
+            for (let i = 0; i < 31; i++) {
+                document.getElementById(i.toString()).innerHTML = "";
+            }
+            if (Month > 10){
+                Year++;
+                Month = 0;
+            }   
+            else {
+                Month++;
+            }
+
+            var Day = 1;
+            var d = new Date(Year, Month, Day);
+            var MonthsName = ["January", "Febrary", "March", "April",
+                "May", "June", "July", "August", "September", "October", "November", "December"];    
+            var Months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
  
+            if (Year % 4 == 0 && (Year % 100 != 0 || Year % 400 == 0)) {
+                Months[1] = 29;
+            }
+
+            var a = 1 - d.getDay();
+            
+            document.getElementById("-2").innerHTML = MonthsName[Month] + " " + Year.toString();
+
+            document.getElementById("-1").innerHTML = "Su  Mo  Tu  We  Tu  Fr  Sa";
+            
+            for (let i = 0; i < 7; i++){
+                for (let j = 0; j < 42; j += 7){
+                    var c = a + i + j;
+                    if (c >= 1 && c <= Months[Month] && c < 10){
+                        document.getElementById((j / 7).toString()).innerHTML += "0" + c.toString() + " ";  
+                    }   
+                    else if (c >= 1 && c <= Months[Month] && c >= 10){
+                        document.getElementById((j / 7).toString()).innerHTML += c.toString() + " ";
+                    }
+                    else {
+                        document.getElementById((j / 7).toString()).innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";  
+                    }    
+                }
+            }
+        }
+
+        function Back() {
+            for (let i = 0; i < 31; i++) {
+                document.getElementById(i.toString()).innerHTML = "";
+            }
+            if (Month < 1){
+                Year--;
+                Month = 11;
+            }   
+            else {
+                Month--;
+            }
+            
+            var Day = 1;
+            var d = new Date(Year, Month, Day);
+            var MonthsName = ["January", "Febrary", "March", "April",
+                "May", "June", "July", "August", "September", "October", "November", "December"];    
+            var Months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+ 
+            if (Year % 4 == 0 && (Year % 100 != 0 || Year % 400 == 0)) {
+                Months[1] = 29;
+            }
+
+            var a = 1 - d.getDay();
+            
+            document.getElementById("-2").innerHTML = MonthsName[Month] + " " + Year.toString();
+
+            document.getElementById("-1").innerHTML = "Su  Mo  Tu  We  Tu  Fr  Sa";
+            
+            for (let i = 0; i < 7; i++){
+                for (let j = 0; j < 42; j += 7){
+                    var c = a + i + j;
+                    if (c >= 1 && c <= Months[Month] && c < 10){
+                        document.getElementById((j / 7).toString()).innerHTML += "0" + c.toString() + " ";  
+                    }   
+                    else if (c >= 1 && c <= Months[Month] && c >= 10){
+                        document.getElementById((j / 7).toString()).innerHTML += c.toString() + " ";
+                    }
+                    else {
+                        document.getElementById((j / 7).toString()).innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";  
+                    }    
+                }
+            }
+        }
+        
+        function Search() {
+            for (let i = 0; i < 31; i++) {
+                document.getElementById(i.toString()).innerHTML = "";
+            }
+            Year = document.getElementById("id1").value;
+            Month = document.getElementById("id2").value - 1;
+            
+            var Day = 1;
+            var d = new Date(Year, Month, Day);
+            var MonthsName = ["January", "Febrary", "March", "April",
+                "May", "June", "July", "August", "September", "October", "November", "December"];    
+            var Months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+ 
+            if (Year % 4 == 0 && (Year % 100 != 0 || Year % 400 == 0)) {
+                Months[1] = 29;
+            }
+
+            var a = 1 - d.getDay();
+            
+            document.getElementById("-2").innerHTML = MonthsName[Month] + " " + Year.toString();
+
+            document.getElementById("-1").innerHTML = "Su  Mo  Tu  We  Tu  Fr  Sa";
+            
+            for (let i = 0; i < 7; i++){
+                for (let j = 0; j < 42; j += 7){
+                    var c = a + i + j;
+                    if (c >= 1 && c <= Months[Month] && c < 10){
+                        document.getElementById((j / 7).toString()).innerHTML += "0" + c.toString() + " ";  
+                    }   
+                    else if (c >= 1 && c <= Months[Month] && c >= 10){
+                        document.getElementById((j / 7).toString()).innerHTML += c.toString() + " ";
+                    }
+                    else {
+                        document.getElementById((j / 7).toString()).innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";  
+                    }    
+                }
+            }
+        }
+
+        Calendar();
+    </script>
+  </div>
+    <input type="button" class="button button4" value="<" onClick="Back();">
+    <input type="button" class="button button4" value=">" onClick="Next();">
     <td>Year <input id="id1" size="5"></td>
     <td>Month <input id="id2" size="5"></td>
-    <input type="button" class="button button4" value="Search" onClick="Calendar();">
- 
+    <input type="button" class="button button4" value="Search" onClick="Search();">
 </body>
  
 </html>

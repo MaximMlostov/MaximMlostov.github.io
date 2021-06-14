@@ -21,3 +21,22 @@
   body {
     background-image: linear-gradient(rgba(255, 0, 0, 0.2), rgba(255, 255, 0, 0.2));
   }
+
+  .div2 {
+    width: fit-content;
+    height: min-content;  
+    padding: 20px;
+    background-color: white;
+    font-size: 15px;
+    border-radius: 30px;
+    text-align: center;  
+  }
+  
+  .div1 {
+    width: 200px;
+    height: 300px;
+    padding: 20px;
+    background-image: linear-gradient(rgba(255, 0, 0, 0.6), rgba(255, 255, 0, 0.6));
+    font-size: 18px;  
+    border-radius: 40px;  
+  }
