@@ -1,0 +1,88 @@
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="index.css">
+    <input type="file" onChange="readFiles(this)" />
+    <title>Quiz2</title>
+ 
+    <script type="text/javascript">
+        var x = 0;
+ 
+        function bubbleSort(arr) {
+            for (let j = arr.length - 1; j > 0; j--) {
+                for (let i = 0; i < j; i++) {
+                    if (arr[i] > arr[i + 1]) {
+                        let temp = arr[i];
+                        arr[i] = arr[i + 1];
+                        arr[i + 1] = temp;
+                    }
+                }
+            }
+        }
+ 
+        function SortMas(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                console.log(arr[i]);
+            }
+ 
+        }
+ 
+        function finder(arr) {
+            let len = 0;
+            let y;
+ 
+            for (let i = 0; i < arr.length - 1; i++) {
+                y = i + 1;
+                if (arr[y] - arr[i] > 1) {
+                    x = arr[i] + 1;
+                    return;
+                }
+                else {
+                    len++;
+                }
+            }
+ 
+            if (len == arr.length - 1) {
+                x = arr[arr.length - 1] + 1;
+            }
+        }
+ 
+        function readFiles(e) {
+            if (window.FileList && window.File) {
+ 
+                const file = e.files[0];
+ 
+                const name = file.name ? file.name : "NOT SUPPORTED";
+                const type = file.type ? file.type : "NOT SUPPORTED";
+                const size = file.size ? file.size : "NOT SUPPORTED";
+                const reader = new FileReader();
+ 
+                reader.addEventListener('load', event => {
+ 
+                    let content = event.target.result;
+                    let rows = content.split(" ");
+                    console.log(rows);
+ 
+                    var mass = [];
+                    for (let j = 0; j < rows.length; j++) {
+                        mass[j] = Number(rows[j]);
+                    }
+                    bubbleSort(mass);
+                    finder(mass);
+                    alert(x);
+                });
+                reader.readAsText(file);
+            }
+        }
+ 
+        function End() {
+        }
+ 
+    </script>
+</head>
+ 
+<body onload="End()">
+</body>
+ 
+</html>
